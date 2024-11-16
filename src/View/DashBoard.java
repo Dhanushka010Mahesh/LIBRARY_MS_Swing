@@ -15,28 +15,19 @@ public class DashBoard extends javax.swing.JFrame {
     private void initComponents() {
 
         backGroundPanel2 = new View.Components.Background.BackGroundPanel();
-        WindowsButtonsUp = new View.Components.WindowTitleBar.ThreeWinBtn();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-
-        WindowsButtonsUp.setOpaque(false);
 
         javax.swing.GroupLayout backGroundPanel2Layout = new javax.swing.GroupLayout(backGroundPanel2);
         backGroundPanel2.setLayout(backGroundPanel2Layout);
         backGroundPanel2Layout.setHorizontalGroup(
             backGroundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundPanel2Layout.createSequentialGroup()
-                .addContainerGap(817, Short.MAX_VALUE)
-                .addComponent(WindowsButtonsUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         backGroundPanel2Layout.setVerticalGroup(
             backGroundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backGroundPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(WindowsButtonsUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(578, Short.MAX_VALUE))
+            .addGap(0, 602, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,7 +81,6 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private View.Components.WindowTitleBar.ThreeWinBtn WindowsButtonsUp;
     private View.Components.Background.BackGroundPanel backGroundPanel2;
     // End of variables declaration//GEN-END:variables
 }

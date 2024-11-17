@@ -56,8 +56,11 @@ public class DashBoard extends javax.swing.JFrame {
                     case 1:
                         menuSelectShow(new Menu2Form());
                         break;
-                    default:
+                    case 2:
                         menuSelectShow(new Menu3Form());
+                        break;
+                    default:
+                        menuSelectShow(new Menu4Form());
                 }
             }
             
@@ -72,8 +75,9 @@ public class DashBoard extends javax.swing.JFrame {
     });
         //add menuItems
         menu.addMenu(new ModelMenu("DashBoard",new ImageIcon(getClass().getResource("/View/Icons_Images/dashboard.png"))));
-        menu.addMenu(new ModelMenu("Settings",new ImageIcon(getClass().getResource("/View/Icons_Images/settings.png"))));
-        menu.addMenu(new ModelMenu("Products",new ImageIcon(getClass().getResource("/View/Icons_Images/check-out.png"))));
+        menu.addMenu(new ModelMenu("Books",new ImageIcon(getClass().getResource("/View/Icons_Images/books.png"))));
+        menu.addMenu(new ModelMenu("Members",new ImageIcon(getClass().getResource("/View/Icons_Images/Members.png"))));
+        menu.addMenu(new ModelMenu("Book View",new ImageIcon(getClass().getResource("/View/Icons_Images/bookView.png"))));
         
         backgroundMainBodyPnl.add(menu,"w 50!");
         backgroundMainBodyPnl.add(main,"w 100%");
@@ -124,7 +128,7 @@ public class DashBoard extends javax.swing.JFrame {
         backgroundMainBodyPnl.setLayout(backgroundMainBodyPnlLayout);
         backgroundMainBodyPnlLayout.setHorizontalGroup(
             backgroundMainBodyPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+            .addGap(0, 979, Short.MAX_VALUE)
         );
         backgroundMainBodyPnlLayout.setVerticalGroup(
             backgroundMainBodyPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

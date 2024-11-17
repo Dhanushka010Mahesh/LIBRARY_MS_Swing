@@ -38,8 +38,8 @@ public class pnlSideBottom extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Icons_Images/group.png"))); // NOI18N
-        jLabel1.setText("Welcome");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Icons_Images/profile.png"))); // NOI18N
+        jLabel1.setText("Welcome Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

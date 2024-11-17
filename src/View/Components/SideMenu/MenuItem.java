@@ -75,7 +75,6 @@ public class MenuItem extends javax.swing.JPanel {
         lblUserName = new javax.swing.JLabel();
 
         lblProfileIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblProfileIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
 
         lblUserName.setFont(new java.awt.Font("Segoe UI Black", 0, 10)); // NOI18N
         lblUserName.setForeground(new java.awt.Color(255, 255, 255));

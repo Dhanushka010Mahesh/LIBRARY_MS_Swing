@@ -26,14 +26,14 @@ public class DashBoard extends javax.swing.JFrame {
     public DashBoard() {
         initComponents();
         //setBackground(Color.WHITE); //clean and build setBackground panel
-        WindowsButtonsUp.initEvent(DashBoard.this, BackgroundMainBodyPnl);
+        //WindowsButtonsUp.initEvent(DashBoard.this, BackgroundMainBodyPnl);
         init();
     }
     
     private void init(){ //create short side bar
         layout = new MigLayout("fill", "0[]10[]0", "0[fill]0"); // layout size set this code
         //pnlSideBody.setLayout(layout);
-        BackgroundMainBodyPnl.setLayout(layout); // this code set some layout
+        backgroundMainBodyPnl.setLayout(layout); // this code set some layout
         main.setOpaque(false);
         main.setLayout(new BorderLayout());
         
@@ -74,8 +74,8 @@ public class DashBoard extends javax.swing.JFrame {
         menu.addMenu(new ModelMenu("Settings",new ImageIcon(getClass().getResource("/View/Icons_Images/settings.png"))));
         menu.addMenu(new ModelMenu("Products",new ImageIcon(getClass().getResource("/View/Icons_Images/check-out.png"))));
         
-        BackgroundMainBodyPnl.add(menu,"w 50!");
-        BackgroundMainBodyPnl.add(main,"w 100%");
+        backgroundMainBodyPnl.add(menu,"w 50!");
+        backgroundMainBodyPnl.add(main,"w 100%");
         
         TimingTarget target = new TimingTargetAdapter() {
             @Override
@@ -89,7 +89,7 @@ public class DashBoard extends javax.swing.JFrame {
                     menu.setAlpha(fraction);
                 }
                 layout.setComponentConstraints(menu, "w " + width + "!");
-                BackgroundMainBodyPnl.revalidate();
+                backgroundMainBodyPnl.revalidate();
             }
 
             @Override
@@ -114,40 +114,31 @@ public class DashBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BackgroundMainBodyPnl = new View.Components.Background.BackGroundPanel();
-        WindowsButtonsUp = new View.Components.WindowTitleBar.ThreeWinBtn();
+        backgroundMainBodyPnl = new View.Components.Background.BackgroundMainBodyPnl1();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        WindowsButtonsUp.setOpaque(false);
-
-        javax.swing.GroupLayout BackgroundMainBodyPnlLayout = new javax.swing.GroupLayout(BackgroundMainBodyPnl);
-        BackgroundMainBodyPnl.setLayout(BackgroundMainBodyPnlLayout);
-        BackgroundMainBodyPnlLayout.setHorizontalGroup(
-            BackgroundMainBodyPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundMainBodyPnlLayout.createSequentialGroup()
-                .addContainerGap(776, Short.MAX_VALUE)
-                .addComponent(WindowsButtonsUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        javax.swing.GroupLayout backgroundMainBodyPnlLayout = new javax.swing.GroupLayout(backgroundMainBodyPnl);
+        backgroundMainBodyPnl.setLayout(backgroundMainBodyPnlLayout);
+        backgroundMainBodyPnlLayout.setHorizontalGroup(
+            backgroundMainBodyPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
-        BackgroundMainBodyPnlLayout.setVerticalGroup(
-            BackgroundMainBodyPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundMainBodyPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(WindowsButtonsUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(573, Short.MAX_VALUE))
+        backgroundMainBodyPnlLayout.setVerticalGroup(
+            backgroundMainBodyPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 602, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BackgroundMainBodyPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgroundMainBodyPnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BackgroundMainBodyPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgroundMainBodyPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -190,7 +181,6 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private View.Components.Background.BackGroundPanel BackgroundMainBodyPnl;
-    private View.Components.WindowTitleBar.ThreeWinBtn WindowsButtonsUp;
+    private View.Components.Background.BackgroundMainBodyPnl1 backgroundMainBodyPnl;
     // End of variables declaration//GEN-END:variables
 }

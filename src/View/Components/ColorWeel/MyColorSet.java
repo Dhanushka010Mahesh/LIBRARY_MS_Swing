@@ -17,4 +17,6 @@ public class MyColorSet {
     public static Color buttonFontColor=Color.WHITE;
     
     public static Color pnlsidebottom=new Color(65,152, 216);
+    
+    public static Color bodyColor=new Color(245,245, 245);
 }

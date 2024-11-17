@@ -1,6 +1,6 @@
 package View.Components.SideMenu;
 
-import View.Components.ButtonCustom.ButtonGradient;
+import View.Components.WindowTitleBar.ThreeWinBtn;
 import View.Components.ColorWeel.MyColorSet;
 import java.awt.Color;
 import java.awt.Component;
@@ -110,6 +110,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         //btnLogout.setText("LogOut");
         btnLogout.setIcon(new ImageIcon(getClass().getResource("/View/Icons_Images/next.png")));
     }
+   
     
     public void addEventLogout(ActionListener event){
         btnLogout.addActionListener(event);

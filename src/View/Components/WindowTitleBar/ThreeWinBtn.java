@@ -1,9 +1,9 @@
 package View.Components.WindowTitleBar;
 
-import View.Components.Background.BackGroundPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class ThreeWinBtn extends javax.swing.JPanel {
 
@@ -11,7 +11,7 @@ public class ThreeWinBtn extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void initEvent(JFrame fram,BackGroundPanel panel){
+    public void initEvent(JFrame fram,JPanel panel){ //BackGroundPanel
         btnWinClose.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) { //when click button close execute 

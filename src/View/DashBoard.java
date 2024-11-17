@@ -8,7 +8,6 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
@@ -22,11 +21,12 @@ public class DashBoard extends javax.swing.JFrame {
     private MigLayout layout;
     private Animator animator;
     private boolean menuShow;
+    private Menu1Form form1Menu=new Menu1Form();
     
     public DashBoard() {
         initComponents();
         //setBackground(Color.WHITE); //clean and build setBackground panel
-        //WindowsButtonsUp.initEvent(DashBoard.this, BackgroundMainBodyPnl);
+        form1Menu.initForm1(DashBoard.this, backgroundMainBodyPnl);
         init();
     }
     
@@ -50,7 +50,8 @@ public class DashBoard extends javax.swing.JFrame {
             public void selected(int index) {
                 switch (index) {
                     case 0:
-                        menuSelectShow(new Menu1Form());
+                        
+                        menuSelectShow(form1Menu);
                         break;
                     case 1:
                         menuSelectShow(new Menu2Form());
@@ -102,7 +103,7 @@ public class DashBoard extends javax.swing.JFrame {
         animator.setResolution(0);
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
-        menuSelectShow(new Menu1Form());
+        menuSelectShow(form1Menu);
     }
     private void menuSelectShow(Component com){
         main.removeAll();

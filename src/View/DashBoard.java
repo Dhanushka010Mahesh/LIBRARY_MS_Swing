@@ -1,8 +1,10 @@
 package View;
 
+import View.Components.SideMenu.EventMenuSelected;
 import View.Components.SideMenu.ModelMenu;
 import View.Components.SideMenu.SideMenuPanel;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -35,6 +37,30 @@ public class DashBoard extends javax.swing.JFrame {
         main.setOpaque(false);
         main.setLayout(new BorderLayout());
         
+        
+        menu.addEventLogout(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Logout button click");
+            }
+            
+        });
+        menu.setEvent(new EventMenuSelected(){
+            @Override
+            public void selected(int index) {
+                switch (index) {
+                    case 0:
+                        menuSelectShow(new Menu1Form());
+                        break;
+                    case 1:
+                        menuSelectShow(new Menu2Form());
+                        break;
+                    default:
+                        menuSelectShow(new Menu3Form());
+                }
+            }
+            
+        });
         menu.addEventMenu(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -57,8 +83,10 @@ public class DashBoard extends javax.swing.JFrame {
                 double width;
                 if (menuShow) {
                     width = 50 + (150 * (1f - fraction));
+                    menu.setAlpha(1f-fraction);
                 } else {
                     width = 50 + (150 * fraction);
+                    menu.setAlpha(fraction);
                 }
                 layout.setComponentConstraints(menu, "w " + width + "!");
                 BackgroundMainBodyPnl.revalidate();
@@ -70,10 +98,17 @@ public class DashBoard extends javax.swing.JFrame {
             }
                 
     };
-                animator = new Animator(400, target);
+        animator = new Animator(400, target);
         animator.setResolution(0);
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
+        menuSelectShow(new Menu1Form());
+    }
+    private void menuSelectShow(Component com){
+        main.removeAll();
+        main.add(com);
+        main.repaint();
+        main.revalidate();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

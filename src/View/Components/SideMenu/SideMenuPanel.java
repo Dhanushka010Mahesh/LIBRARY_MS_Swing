@@ -1,5 +1,6 @@
 package View.Components.SideMenu;
 
+import View.Components.ButtonCustom.ButtonGradient;
 import View.Components.ColorWeel.MyColorSet;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 
@@ -22,6 +24,9 @@ public class SideMenuPanel extends javax.swing.JPanel {
     private JPanel panelMenu;
     private JButton btnLogout;
     private JButton btnMenuShow;
+    private SideHeader header;
+    private pnlSideBottom bottom;
+    private EventMenuSelected event;
     
     /*
     BackgroundMainBodyPnl-body
@@ -39,15 +44,25 @@ public class SideMenuPanel extends javax.swing.JPanel {
         init();
     }
     
+    public void setEvent(EventMenuSelected event){
+        this.event=event;
+    }
+    
     private void init(){
-        setLayout(new MigLayout("wrap, fillx, insets 0", "[fill]", "70[]0")); //set position
+        setLayout(new MigLayout("wrap, fillx, insets 0", "[fill]", "40[]0[]push[60]0")); //set position up side bar
         panelMenu = new JPanel();
+        header=new SideHeader();
+        bottom=new pnlSideBottom();
         createButtonMenu();
+        createLogoutButton();
         panelMenu.setOpaque(false);
-        layout = new MigLayout("fillx, wrap", "0[fill]0", "0[]0");
+        layout = new MigLayout("fillx, wrap", "0[fill]0", "0[]3[]0");//set space in while menu panel
         panelMenu.setLayout(layout);
         add(btnMenuShow, "pos 1al 0al 100% 50");
+        add(btnLogout, "pos 1al 1al, width 25%, height 60!");
+        add(header);
         add(panelMenu);
+        add(bottom);
     }
     
     public void addMenu(ModelMenu menu) {
@@ -58,6 +73,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
                 clearMenu(index); 
             }
         });
+        item.addEvent(event);
         panelMenu.add(item);
     }
 
@@ -84,10 +100,28 @@ public class SideMenuPanel extends javax.swing.JPanel {
         btnMenuShow.setContentAreaFilled(false);
         btnMenuShow.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnMenuShow.setIcon(new ImageIcon(getClass().getResource("/View/Icons_Images/next.png")));
+        btnMenuShow.setBorder(new EmptyBorder(5,12,5,12));
+    }
+    
+    private void createLogoutButton(){
+        btnLogout=new JButton();
+        btnLogout.setContentAreaFilled(false);
+        //btnLogout.setBackground(Color.WHITE);
+        //btnLogout.setText("LogOut");
+        btnLogout.setIcon(new ImageIcon(getClass().getResource("/View/Icons_Images/next.png")));
+    }
+    
+    public void addEventLogout(ActionListener event){
+        btnLogout.addActionListener(event);
     }
     
     public void addEventMenu(ActionListener event){
         btnMenuShow.addActionListener(event);
+    }
+    
+    public void setAlpha(float alpha){
+        header.setAlpha(alpha);
+        bottom.setAlpha(alpha);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -101,7 +135,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 562, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

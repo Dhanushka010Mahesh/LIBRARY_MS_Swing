@@ -1,22 +1,17 @@
 package View.Components.SideMenu;
 
-import View.Components.WindowTitleBar.ThreeWinBtn;
 import View.Components.ColorWeel.MyColorSet;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
-import org.jdesktop.animation.timing.Animator;
 
 public class SideMenuPanel extends javax.swing.JPanel {
 

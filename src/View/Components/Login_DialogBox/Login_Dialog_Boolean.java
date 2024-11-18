@@ -1,4 +1,4 @@
-package View.Components.Login_Popup;
+package View.Components.Login_DialogBox;
 
 import View.Components.SideMenu.EventMenuSelected;
 import javax.swing.*;

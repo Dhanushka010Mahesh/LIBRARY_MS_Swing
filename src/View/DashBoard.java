@@ -1,9 +1,8 @@
 package View;
 
 
-import View.Components.Login_Popup.Login_Dialog_Boolean;
+import View.Components.Login_DialogBox.Login_Dialog_Boolean;
 import View.Components.SideMenu.EventMenuSelected;
-import View.Components.SideMenu.MenuItem;
 import View.Components.SideMenu.ModelMenu;
 import View.Components.SideMenu.SideMenuPanel;
 import java.awt.BorderLayout;
@@ -12,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;

@@ -1,6 +1,9 @@
 package View;
 
+
+import View.Components.Login_Popup.Login_Dialog_Boolean;
 import View.Components.SideMenu.EventMenuSelected;
+import View.Components.SideMenu.MenuItem;
 import View.Components.SideMenu.ModelMenu;
 import View.Components.SideMenu.SideMenuPanel;
 import java.awt.BorderLayout;
@@ -8,11 +11,15 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
+
 
 public class DashBoard extends javax.swing.JFrame {
 
@@ -23,10 +30,13 @@ public class DashBoard extends javax.swing.JFrame {
     private boolean menuShow;
     private Menu1Form form1Menu=new Menu1Form();
     
+    
+    
     public DashBoard() {
         initComponents();
         //setBackground(Color.WHITE); //clean and build setBackground panel
         form1Menu.initForm1(DashBoard.this, backgroundMainBodyPnl);
+        //GlassPanePopup.install(this); //this folder nothing yet
         init();
     }
     
@@ -50,17 +60,40 @@ public class DashBoard extends javax.swing.JFrame {
             public void selected(int index) {
                 switch (index) {
                     case 0:
-                        
+                
                         menuSelectShow(form1Menu);
+                        
                         break;
                     case 1:
-                        menuSelectShow(new Menu2Form());
+                        //GlassPanePopup.showPopup(new Login_Popup());
+                        
+                        Login_Dialog_Boolean loginDialogBook = new Login_Dialog_Boolean((JFrame) SwingUtilities.getWindowAncestor(menu), this);
+                        loginDialogBook.setVisible(true);
+
+                        if (loginDialogBook.validateLogin()) {
+                            menuSelectShow(new Menu2Form());
+                        } else {
+                            menuSelectShow(form1Menu);
+                            
+                        }
+                        
                         break;
                     case 2:
-                        menuSelectShow(new Menu3Form());
+                        //GlassPanePopup.showPopup(new Login_Popup());
+                        Login_Dialog_Boolean loginDialogAccount = new Login_Dialog_Boolean((JFrame) SwingUtilities.getWindowAncestor(menu), this);
+                        loginDialogAccount.setVisible(true);
+
+                        if (loginDialogAccount.validateLogin()) {
+                            menuSelectShow(new Menu3Form());
+                        } else {
+                            menuSelectShow(form1Menu);
+                        }
+                        
                         break;
                     default:
-                        menuSelectShow(new Menu4Form());
+                       menuSelectShow(new Menu4Form());
+                        
+                        
                 }
             }
             

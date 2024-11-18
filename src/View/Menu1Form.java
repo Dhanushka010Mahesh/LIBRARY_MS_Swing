@@ -36,7 +36,7 @@ public class Menu1Form extends javax.swing.JPanel {
         backGroundPanel1.setLayout(backGroundPanel1Layout);
         backGroundPanel1Layout.setHorizontalGroup(
             backGroundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backGroundPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundPanel1Layout.createSequentialGroup()
                 .addContainerGap(400, Short.MAX_VALUE)
                 .addGroup(backGroundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundPanel1Layout.createSequentialGroup()

@@ -42,6 +42,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         initComponents();
         setOpaque(false);
         init();
+        
     }
     
     public void setEvent(EventMenuSelected event){

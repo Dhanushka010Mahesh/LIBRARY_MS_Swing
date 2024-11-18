@@ -2,7 +2,6 @@ package View.Components.SideMenu;
 
 import View.Components.ColorWeel.MyColorSet;
 import java.awt.AlphaComposite;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -104,6 +103,7 @@ public class MenuItem extends javax.swing.JPanel {
     private void runEvent() {
         for (EventMenuSelected event : events) {
             event.selected(index);
+             
         }
     }
 

@@ -26,35 +26,82 @@ public class Menu2Form extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new java.awt.Panel();
+        tPnlBooks = new View.Components.TabbedPaneCustom.TabbedPaneCustom();
+        tPnlBadd = new java.awt.Panel();
+        tPnlBupdate = new java.awt.Panel();
+        tPnlBdelete = new java.awt.Panel();
+        iPnlBookHed = new View.Components.ImagePanel.ImageAvatar();
 
-        panel1.setBackground(new java.awt.Color(204, 0, 153));
+        tPnlBooks.setBackground(new java.awt.Color(255, 255, 255));
+        tPnlBooks.setForeground(new java.awt.Color(0, 0, 255));
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+        tPnlBadd.setFont(new java.awt.Font("Dubai", 3, 15)); // NOI18N
+
+        javax.swing.GroupLayout tPnlBaddLayout = new javax.swing.GroupLayout(tPnlBadd);
+        tPnlBadd.setLayout(tPnlBaddLayout);
+        tPnlBaddLayout.setHorizontalGroup(
+            tPnlBaddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 635, Short.MAX_VALUE)
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+        tPnlBaddLayout.setVerticalGroup(
+            tPnlBaddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 382, Short.MAX_VALUE)
         );
+
+        tPnlBooks.addTab("Add", tPnlBadd);
+
+        tPnlBupdate.setFont(new java.awt.Font("Dubai", 3, 15)); // NOI18N
+
+        javax.swing.GroupLayout tPnlBupdateLayout = new javax.swing.GroupLayout(tPnlBupdate);
+        tPnlBupdate.setLayout(tPnlBupdateLayout);
+        tPnlBupdateLayout.setHorizontalGroup(
+            tPnlBupdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 635, Short.MAX_VALUE)
+        );
+        tPnlBupdateLayout.setVerticalGroup(
+            tPnlBupdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 382, Short.MAX_VALUE)
+        );
+
+        tPnlBooks.addTab("Update", tPnlBupdate);
+
+        tPnlBdelete.setFont(new java.awt.Font("Dubai", 3, 15)); // NOI18N
+
+        javax.swing.GroupLayout tPnlBdeleteLayout = new javax.swing.GroupLayout(tPnlBdelete);
+        tPnlBdelete.setLayout(tPnlBdeleteLayout);
+        tPnlBdeleteLayout.setHorizontalGroup(
+            tPnlBdeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 635, Short.MAX_VALUE)
+        );
+        tPnlBdeleteLayout.setVerticalGroup(
+            tPnlBdeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 382, Short.MAX_VALUE)
+        );
+
+        tPnlBooks.addTab("Delete", tPnlBdelete);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(iPnlBookHed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tPnlBooks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(iPnlBookHed, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tPnlBooks, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Panel panel1;
+    private View.Components.ImagePanel.ImageAvatar iPnlBookHed;
+    private java.awt.Panel tPnlBadd;
+    private java.awt.Panel tPnlBdelete;
+    private View.Components.TabbedPaneCustom.TabbedPaneCustom tPnlBooks;
+    private java.awt.Panel tPnlBupdate;
     // End of variables declaration//GEN-END:variables
 }

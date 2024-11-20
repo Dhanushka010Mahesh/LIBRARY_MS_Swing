@@ -1,19 +1,22 @@
 package Model;
 
 public class MemberShipCard {
-    private int cardNumber;
-    private String expireDate;
+    private String cardNumber;
+    private String registerDate;
 
-    public MemberShipCard(int cardNumber, String expireDate) {
+    public MemberShipCard(String cardNumber) {
         this.cardNumber = cardNumber;
-        this.expireDate = expireDate;
+    }
+    
+    public void setRegisterDate(String date){
+        this.registerDate=date;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public String getExpireDate() {
-        return expireDate;
+    public String getRegisterDate() {
+        return registerDate;
     }
 }

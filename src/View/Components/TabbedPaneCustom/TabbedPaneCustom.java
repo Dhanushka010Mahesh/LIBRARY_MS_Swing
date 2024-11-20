@@ -29,7 +29,7 @@ public class TabbedPaneCustom extends JTabbedPane {
     }
 
     private Color selectedColor = MyColorSet.shortMenuColor2;
-    private Color unselectedColor = Color.GREEN;
+    private Color unselectedColor = MyColorSet.shortMenuColor1;
 
     public TabbedPaneCustom() {
         setBackground(Color.PINK);

@@ -6,19 +6,21 @@ public class User {
     private String email;
     private String userType;
     private String address;
-    private String userName;
-    private String password;
 
-    public User() {
-        
+    public User(String id) {
+        this.id=id;
     }
+
+    public User(String fullName,String email,String address) {
+        name=fullName;
+        this.email=email;
+        this.address=address;
+        this.userType="member";
+    }
+    
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -38,7 +40,7 @@ public class User {
     }
 
     public String getUserType() {
-        return userType;
+        return "admin";
     }
 
     public void setUserType(String userType) {
@@ -51,22 +53,6 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
 enum UserType {

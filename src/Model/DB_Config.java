@@ -5,14 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 public class DB_Config {
 
-    private String url = "jdbc:mysql://localhost:3306/lms_sliate";
+    private String url = "jdbc:mysql://localhost:3306/lms_sliate?allowMultiQueries=true";
     private String user = "root";
     private String pass = "";
-    private Connection conn = null;
+    public Connection conn = null;
 
     public void ConnOpen() {
         try {
@@ -23,6 +22,10 @@ public class DB_Config {
         } catch (SQLException ex) {
             Logger.getLogger(DB_Config.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public Connection getConnection(){
+        return conn;
     }
 
     public Set<Book> getBookSet() {
@@ -63,9 +66,9 @@ public class DB_Config {
         return bookSet;
     }
 
-    public Set<User> getMemberSet(String memberType) {
-        String memberQty = "select USR_Id,USR_Name,USR_Email,USR_Address,USR_Type,USR_Username,USR_Password,USRM_Membership_Card from users u,members m where USR_Status='1' and USR_Id=USRM_Id and USR_Type='" + memberType + "'";
-        Set<User> memberSet = new HashSet<>();
+    public Set<Member> getMemberSet() {
+        String memberQty = "select USR_Id,USR_Name,USR_Email,USR_Address,USRM_Membership_Card,USRM_RegisterDate from users u,members m where USR_Status='1' and USR_Id=USRM_Id and USR_Type='member'";
+        Set<Member> memberSet = new HashSet<>();
 
         ConnOpen();
         try {
@@ -75,16 +78,12 @@ public class DB_Config {
             // Process the result set
             while (resultSet.next()) {
                 // Create a new Book object
-                Member member = new Member();
+                Member member = new Member(resultSet.getString("USR_Id"),resultSet.getString("USRM_Membership_Card"));
 
-                member.setId(resultSet.getString("USR_Id"));
                 member.setName(resultSet.getString("USR_Name"));
                 member.setEmail(resultSet.getString("USR_Email"));
                 member.setAddress(resultSet.getString("USR_Address"));
-                member.setUserType(resultSet.getString("USR_Type"));
-                member.setUserName(resultSet.getString("USR_Username"));
-                member.setPassword(resultSet.getString("USR_Password"));
-                member.setMemberCard(resultSet.getString("USRM_Membership_Card"));
+                member.getMemberCard().setRegisterDate(resultSet.getString("USRM_RegisterDate"));
                 // Add book to the set
                 memberSet.add(member);
             }

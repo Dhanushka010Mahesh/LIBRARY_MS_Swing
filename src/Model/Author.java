@@ -1,6 +1,7 @@
 package Model;
 
 public class Author {
+    private String authorID;
     private String name;
     private String email;
 
@@ -11,6 +12,9 @@ public class Author {
 
     public String getName() {
         return name;
+    }
+    public void setId(String id) {
+        this.authorID=id;
     }
 
     public void setName(String name) {

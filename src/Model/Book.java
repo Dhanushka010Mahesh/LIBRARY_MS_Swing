@@ -8,6 +8,7 @@ public class Book {
     private boolean avalability;
     private String author;
     private String catogary;
+    private int qty;
 
     public Book(String id, String title, String image, String publishedYear, boolean avalability, String author, String catogary) {
         this.id = id;
@@ -18,10 +19,26 @@ public class Book {
         this.author = author;
         this.catogary = catogary;
     }
+    public Book(String title,String publishedYear,String author,int qty, String catogary,String image) {
+        this.title = title;
+        this.publishedYear = publishedYear;
+        this.author = author;
+        this.qty=qty;
+        this.catogary = catogary;
+        this.image = image;
+    }
     public Book(){
 
     }
 
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+    
     public String getId() {
         return id;
     }

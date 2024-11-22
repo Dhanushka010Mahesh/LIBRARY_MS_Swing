@@ -3,7 +3,10 @@ package Controller;
 import Model.Admin;
 import Model.DB_Config;
 import Model.Member;
+import View.Components.Table.TableActionEvent;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.sql.*;
 import java.util.Set;
@@ -123,7 +126,7 @@ public class UserController {
             }
         }
     }
-
+    
     public void showAllMember() {
         for (Member member : memberSet) {
             //show all members data in table
@@ -137,4 +140,14 @@ public class UserController {
         }
     }
 
+    public Member SearchMember(String cardMemberShip){
+        for (Member member : memberSet) {
+            if(member.getMemberCard().getCardNumber().equalsIgnoreCase(cardMemberShip)){
+                
+                return member;
+            }
+        }
+        
+        return null;
+    }
 }

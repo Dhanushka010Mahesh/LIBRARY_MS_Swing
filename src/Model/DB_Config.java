@@ -29,7 +29,7 @@ public class DB_Config {
     }
 
     public Set<Book> getBookSet() {
-        String bookQty = "select BO_ID,BO_Title,BO_Image,BO_Pub_Year,BO_Quanty,BO_Avalability,AU_Name,CAT_Name from author a,book b,book_catogory c where BO_Status='1' and BO_AuthorID=AU_ID and BO_Catogory=CAT_ID";
+        String bookQty = "select BO_ID,BO_Title,BO_Image,BO_Pub_Year,BO_Quanty,BO_Avalability,AU_Name,CAT_Name from author a,book b,book_catogory c where BO_Status='1' and b.BO_Catogory_name=c.CAT_Name and b.BO_Author_name=a.AU_Name";
         Set<Book> bookSet = new HashSet<>();
         ConnOpen();
         try {

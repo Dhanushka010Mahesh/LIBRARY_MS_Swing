@@ -18,6 +18,7 @@ public class Login_Dialog_Boolean extends JDialog {
         initializeComponents(); // Initialize UI components
         setLayout(new MigLayout("wrap 2", "[right][grow,fill]", "[][]20[]"));
         setSize(300, 200);
+        this.setLocationRelativeTo(parent); 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         // Add components to dialog

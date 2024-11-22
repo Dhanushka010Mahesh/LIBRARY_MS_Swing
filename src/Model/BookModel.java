@@ -1,29 +1,28 @@
 package Model;
 
+import View.Components.Login_DialogBox.OneBookDetails;
+import View.Menu4Form;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class BookModel extends javax.swing.JPanel {
 
-    private Icon icon;
-    private String name;
-    private String id;
-    private boolean avalability;
+    private Book book;
    
-    public BookModel(Icon icon ,String id,String name,boolean av) {
+    public BookModel(Book b) {
         initComponents();
-        this.icon=icon;
-        this.name=name;
-        this.id=id;
-        this.avalability=av;
+        book=b;
+        lblid.setText(book.getId());
+        lblName.setText(book.getTitle());
+        lblAvalability.setText(String.valueOf(book.getAvalability()));
+        iPnlBookimg.setIcon(new ImageIcon(getClass().getResource("/View/Upload/" + book.getImage())));
     }
 
-    public void setLableValue(){
-        iPnlBookimg.setIcon(icon);
-        lblid.setText(id);
-        lblName.setText(name);
-        lblAvalability.setText(String.valueOf(avalability));
-    }
+//    public void setLableValue(){
+//        
+        
+//    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -90,8 +89,8 @@ public class BookModel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGradient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGradient1ActionPerformed
-
-        JOptionPane.showMessageDialog(null, id+" "+ name+" "+ avalability);
+        OneBookDetails mm=new OneBookDetails(book);
+        mm.setVisible(true);
     }//GEN-LAST:event_buttonGradient1ActionPerformed
 
 

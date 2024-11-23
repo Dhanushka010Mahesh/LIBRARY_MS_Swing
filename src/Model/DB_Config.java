@@ -27,6 +27,46 @@ public class DB_Config {
     public Connection getConnection(){
         return conn;
     }
+    
+    public Set<BorrowBook> getBorrowSet(){
+        String bookQty = "select a.BO_ID,a.BO_Title,a.BO_Author_name,a.BO_Catogory_name,d.USR_Name,b.USRM_Id,b.USRM_Membership_Card,c.BRR_Date,c.BRR_return_date,c.is_returned from book a,members b,book_borrow c,users d where a.BO_ID=c.BO_ID and b.USRM_Id=c.USRM_Id and b.USRM_Id=d.USR_Id;";
+        Set<BorrowBook> borrowSet = new HashSet<>();
+        ConnOpen();
+        try {
+            Statement sta = conn.createStatement();
+            ResultSet resultSet = sta.executeQuery(bookQty);
+            
+            // Process the result set
+            while (resultSet.next()) {
+                // Create a new Book object
+                
+                Book book = new Book();
+                book.setId(resultSet.getString("BO_ID")); // Assuming BO_ID is int
+                book.setTitle(resultSet.getString("BO_Title"));
+                book.setAuthor(resultSet.getString("BO_Author_name"));
+                book.setCatogary(resultSet.getString("BO_Catogory_name"));
+                Member member = new Member(resultSet.getString("USRM_Id"),resultSet.getString("USRM_Membership_Card"));
+                member.setName(resultSet.getString("USR_Name"));
+                BorrowBook br=new BorrowBook(book,member,resultSet.getString("BRR_Date"),resultSet.getString("BRR_return_date"));
+                br.setIs_return(resultSet.getBoolean("is_returned"));
+                
+                // Add book to the set
+                borrowSet.add(br);
+            }
+        } catch (Exception e) {
+            System.out.println("open conn err : " + e);
+        } finally {
+            try {
+                conn.close();
+                System.out.println("Connection closed.");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+        }
+
+        return borrowSet;
+    }
 
     public Set<Book> getBookSet() {
         String bookQty = "select BO_ID,BO_Title,BO_Image,BO_Pub_Year,BO_Quanty,BO_Avalability,AU_Name,CAT_Name from author a,book b,book_catogory c where BO_Status='1' and b.BO_Catogory_name=c.CAT_Name and b.BO_Author_name=a.AU_Name";
@@ -48,6 +88,7 @@ public class DB_Config {
                 book.setAuthor(resultSet.getString("AU_Name"));
                 book.setCatogary(resultSet.getString("CAT_Name"));
 
+                
                 // Add book to the set
                 bookSet.add(book);
             }

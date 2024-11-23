@@ -1,9 +1,11 @@
 package View.Components.Login_DialogBox;
 
+import Controller.BorreowController;
 import Controller.UserController;
 import Model.Book;
 import Model.Member;
 import View.Components.Background.scrollBarCustom.ScrollBarCustom;
+import View.Menu1Form;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -11,8 +13,10 @@ public class OneBookDetails extends javax.swing.JDialog {
 
     private Book book;
     private UserController mc = new UserController();
+    private BorreowController bmcc = new BorreowController();
     private Member member;
-    private boolean memberHave=false;
+    private boolean memberHave = false;
+    private boolean isBorrow = false;
 
     public OneBookDetails(Book b) {
         initComponents();
@@ -24,7 +28,7 @@ public class OneBookDetails extends javax.swing.JDialog {
         lblBookName.setText(book.getTitle());
         lblAuthor.setText(book.getAuthor());
         lblCategory.setText(book.getCatogary());
-        lblBookAvalability.setText((book.getAvalability()) ? "Not Have" : "Have");
+        lblBookAvalability.setText((isBorrow) ? "Not Have" : "Have");
     }
 
     @SuppressWarnings("unchecked")
@@ -335,14 +339,19 @@ public class OneBookDetails extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void customButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButton1ActionPerformed
-        if(memberHave){
-            txtAUserName.getText();
-        txtAPassword.getText();
-        JOptionPane.showMessageDialog(null, book.getId()+" "+member.getId());
-        }else{
-            JOptionPane.showMessageDialog(null,"First Select Member");
+        isBorrow = bmcc.isBookBorrow(book.getId());
+        if (!memberHave) {
+            JOptionPane.showMessageDialog(null, "First Select Member");
+        } else if (isBorrow) {
+            JOptionPane.showMessageDialog(null, "Already book borrow");
+        } else {
+            if (mc.loginAdmin(txtAUserName.getText().trim(),txtAPassword.getText().trim())) {
+                bmcc.add(book, member);
+            } else {
+                JOptionPane.showMessageDialog(null, "UserNAme and Password incorrect");
+            }
         }
-        
+
     }//GEN-LAST:event_customButton1ActionPerformed
 
     private void btnSearchMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchMemberActionPerformed
@@ -351,19 +360,19 @@ public class OneBookDetails extends javax.swing.JDialog {
             lblUserId.setText(member.getId());
             lblRegisterDate.setText(member.getMemberCard().getRegisterDate());
             lblFullName.setText(member.getName());
-            memberHave=true;
-        }else{
+            memberHave = true;
+        } else {
             JOptionPane.showMessageDialog(null, "Not Match Membership card number");
         }
-        
+
     }//GEN-LAST:event_btnSearchMemberActionPerformed
 
     private void btnClearUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearUserActionPerformed
         lblUserId.setText("");
         lblFullName.setText("");
         lblRegisterDate.setText("");
-        member=null;
-        memberHave=false;
+        member = null;
+        memberHave = false;
         txtMemberCardSearch.setText("");
     }//GEN-LAST:event_btnClearUserActionPerformed
 

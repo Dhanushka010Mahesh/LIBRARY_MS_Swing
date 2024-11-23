@@ -44,6 +44,7 @@ public class Menu3Form extends javax.swing.JPanel {
         sPnlMemberBackground.setVerticalScrollBar(new ScrollBarCustom());
         tblMember.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         tblMember.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        uc_form3.showAllMember(tblMember);
     }
 
     public void potoSet(String path, JLabel pic) {
@@ -317,16 +318,7 @@ public class Menu3Form extends javax.swing.JPanel {
 
         tblMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "User Id", "Name", "MemberCard Number", "Register Date", "Action"

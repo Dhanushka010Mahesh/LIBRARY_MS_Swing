@@ -6,10 +6,10 @@ public class MyColorSet {
     public static Color backgroundBody=Color.decode("#F2F2F2"); //new Color(242,242, 242);
     public static Color menuItemPnlBefo=new Color(245,245, 245);
     public static Color menuItemPnlAfter=new Color(245,245, 245);
-    public static Color BackgroundHeader=Color.decode("#004FF9");
+    public static Color BackgroundHeader=Color.decode("#7303c0");
         
     public static Color sideMenuUPColor=BackgroundHeader;
-    public static Color shortMenuColor2=Color.decode("#649173");
+    public static Color shortMenuColor2=Color.decode("#ec38bc");
     public static Color shortMenuColor1=Color.decode("#DBD5A4");
     
     public static Color buttonBackColor=Color.decode("#ee0979"); //https://uigradients.com/#CoolSky

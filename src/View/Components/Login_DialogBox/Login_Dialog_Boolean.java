@@ -1,11 +1,13 @@
 package View.Components.Login_DialogBox;
 
+import Controller.UserController;
 import View.Components.SideMenu.EventMenuSelected;
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 
 public class Login_Dialog_Boolean extends JDialog {
     private boolean loginSuccess = false;
+    private UserController uc=new UserController();
 
     // Declare UI components
     private JTextField userField;
@@ -35,7 +37,8 @@ public class Login_Dialog_Boolean extends JDialog {
             String password = new String(passField.getPassword());
 
             // Replace with actual validation logic
-            if ("aaa".equals(username) && "1234".equals(password)) {
+            //if ("aaa".equals(username) && "1234".equals(password)) {
+            if(uc.loginAdmin(username, password)) {
                 loginSuccess = true; // Set login success
                 dispose(); // Close the dialog
             } else {

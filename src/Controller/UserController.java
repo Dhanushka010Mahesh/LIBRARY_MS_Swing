@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Admin;
+import Model.Book;
 import Model.DB_Config;
 import Model.Member;
 import View.Components.Table.TableActionEvent;
@@ -10,7 +11,10 @@ import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.sql.*;
 import java.util.Set;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class UserController {
 
@@ -21,6 +25,10 @@ public class UserController {
         connection = new DB_Config();
         memberSet = new HashSet<>();
         memberSet = connection.getMemberSet();
+    }
+
+    public int getMemberCount() {
+        return memberSet.size();
     }
 
     public void add(Member member) {
@@ -126,28 +134,68 @@ public class UserController {
             }
         }
     }
-    
-    public void showAllMember() {
+
+    public void showAllMember(JTable tbl) {
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
         for (Member member : memberSet) {
             //show all members data in table
-            member.getId();
-            member.getMemberCard().getCardNumber();
-            member.getMemberCard().getRegisterDate();
-            member.getName();
-            member.getEmail();
-            member.getAddress();
-            JOptionPane.showMessageDialog(null, member.getName());
+            Vector oneRowArray = new Vector();
+            oneRowArray.add(member.getId());
+            oneRowArray.add(member.getName());
+            oneRowArray.add(member.getMemberCard().getCardNumber());
+            oneRowArray.add(member.getMemberCard().getRegisterDate());
+            model.addRow(oneRowArray);
+//            member.getEmail();
+//            member.getAddress();
+//            JOptionPane.showMessageDialog(null, member.getName());
         }
     }
 
-    public Member SearchMember(String cardMemberShip){
+    public Member SearchMember(String cardMemberShip) {
         for (Member member : memberSet) {
-            if(member.getMemberCard().getCardNumber().equalsIgnoreCase(cardMemberShip)){
-                
+            if (member.getMemberCard().getCardNumber().equalsIgnoreCase(cardMemberShip)) {
+
                 return member;
             }
         }
-        
+
         return null;
+    }
+
+    public boolean loginAdmin(String userName, String password) {
+        connection.ConnOpen();
+        if (userName.isEmpty() || password.isEmpty()) {
+            return false;
+        }
+        try {
+            String qry = "SELECT a.USRA_Username, a.USRA_Password FROM admins a, users b WHERE  a.USRA_Id = b.USR_Id and b.USR_Status='1' and USRA_Username = ?;";
+            PreparedStatement ps = connection.getConnection().prepareStatement(qry);
+            ps.setString(1, userName);
+            //sta.executeUpdate(Query);
+
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+
+                if (result.getString("USRA_Password").equals(password)) {
+
+                    return true;
+
+                }
+
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            //closeConnection();
+            try {
+                connection.getConnection().close();
+            } catch (Exception e) {
+
+            }
+
+        }
+
+        return false;
     }
 }

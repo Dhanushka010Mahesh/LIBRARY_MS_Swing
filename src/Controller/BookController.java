@@ -13,10 +13,12 @@ import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +33,10 @@ public class BookController {
         bookSet = new HashSet<>();
         bookSet = connection.getBookSet();
 
+    }
+    
+    public int getBookCount(){
+        return bookSet.size();
     }
 
     public void showAllBook(GridLayoutCustom showBookPanel) {
@@ -52,17 +58,17 @@ public class BookController {
 //        
 //    }
 
-    private void fetchBookDetails() {
-
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Book ID");
-        model.addColumn("Title");
-        model.addColumn("Image");
-        model.addColumn("Publication Year");
-        model.addColumn("Quantity");
-        model.addColumn("Availability");
-        model.addColumn("Author Name");
-        model.addColumn("Category Name");
+    public void fetchBookDetails(JTable tbl) {
+        DefaultTableModel model=(DefaultTableModel)tbl.getModel();
+               
+        for (Book book : bookSet) {
+            Vector oneRowArray=new Vector();
+            oneRowArray.add(book.getId());
+            oneRowArray.add(book.getTitle());
+            oneRowArray.add(book.getAuthor());
+            oneRowArray.add(book.getCatogary());
+            model.addRow(oneRowArray);
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package View;
 
 import Controller.BookController;
+import Controller.BorreowController;
 import Model.Author;
 import Model.Book;
 import Model.Book_Category;
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class Menu2Form extends javax.swing.JPanel {
 
     private BookController bc = new BookController();
+    private BorreowController bmcc=new BorreowController();
 
     public Menu2Form() {
         initComponents();
@@ -39,8 +41,33 @@ public class Menu2Form extends javax.swing.JPanel {
                 System.out.println("View row : " + row);
             }
         };
+        TableActionEvent event1 = new TableActionEvent() {
+            @Override
+            public void onEdit(int row) {
+                System.out.println("Edit row : " + row);
+            }
+
+            @Override
+            public void onDelete(int row) {
+                if (tblBorrowData.isEditing()) {
+                    tblBorrowData.getCellEditor().stopCellEditing();
+                }
+                DefaultTableModel model = (DefaultTableModel) tblBorrowData.getModel();
+                model.removeRow(row);
+            }
+
+            @Override
+            public void onView(int row) {
+                System.out.println("View row : " + row);
+            }
+        };
+        
         tblBookTable.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         tblBookTable.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+         tblBorrowData.getColumnModel().getColumn(5).setCellRenderer(new TableActionCellRender());
+        tblBorrowData.getColumnModel().getColumn(5).setCellEditor(new TableActionCellEditor(event1));
+        bmcc.showAllBorrowList(tblBorrowData);
+        bc.fetchBookDetails(tblBookTable);
     }
 
     @SuppressWarnings("unchecked")
@@ -87,7 +114,9 @@ public class Menu2Form extends javax.swing.JPanel {
         tPnlBupdate = new java.awt.Panel();
         spnlBookBackground = new javax.swing.JScrollPane();
         tblBookTable = new javax.swing.JTable();
-        tPnlBdelete = new java.awt.Panel();
+        tPnlBorrowData = new java.awt.Panel();
+        spnlBorrowBackground = new javax.swing.JScrollPane();
+        tblBorrowData = new javax.swing.JTable();
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -467,16 +496,7 @@ public class Menu2Form extends javax.swing.JPanel {
 
         tblBookTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Book Id", "Title", "Author Name", "Category Name", "Action"
@@ -505,7 +525,9 @@ public class Menu2Form extends javax.swing.JPanel {
         tPnlBupdate.setLayout(tPnlBupdateLayout);
         tPnlBupdateLayout.setHorizontalGroup(
             tPnlBupdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spnlBookBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE)
+            .addGroup(tPnlBupdateLayout.createSequentialGroup()
+                .addComponent(spnlBookBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 58, Short.MAX_VALUE))
         );
         tPnlBupdateLayout.setVerticalGroup(
             tPnlBupdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,20 +536,50 @@ public class Menu2Form extends javax.swing.JPanel {
 
         tPnlBooks.addTab("Update", tPnlBupdate);
 
-        tPnlBdelete.setFont(new java.awt.Font("Dubai", 3, 15)); // NOI18N
+        tPnlBorrowData.setFont(new java.awt.Font("Dubai", 3, 15)); // NOI18N
 
-        javax.swing.GroupLayout tPnlBdeleteLayout = new javax.swing.GroupLayout(tPnlBdelete);
-        tPnlBdelete.setLayout(tPnlBdeleteLayout);
-        tPnlBdeleteLayout.setHorizontalGroup(
-            tPnlBdeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 704, Short.MAX_VALUE)
+        tblBorrowData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "MemberCard", "Book name", "Member name", "return date", "status", "Action"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBorrowData.setRowHeight(40);
+        spnlBorrowBackground.setViewportView(tblBorrowData);
+
+        javax.swing.GroupLayout tPnlBorrowDataLayout = new javax.swing.GroupLayout(tPnlBorrowData);
+        tPnlBorrowData.setLayout(tPnlBorrowDataLayout);
+        tPnlBorrowDataLayout.setHorizontalGroup(
+            tPnlBorrowDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tPnlBorrowDataLayout.createSequentialGroup()
+                .addComponent(spnlBorrowBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 68, Short.MAX_VALUE))
         );
-        tPnlBdeleteLayout.setVerticalGroup(
-            tPnlBdeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
+        tPnlBorrowDataLayout.setVerticalGroup(
+            tPnlBorrowDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tPnlBorrowDataLayout.createSequentialGroup()
+                .addComponent(spnlBorrowBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 207, Short.MAX_VALUE))
         );
 
-        tPnlBooks.addTab("Delete", tPnlBdelete);
+        tPnlBooks.addTab("Borrow Data", tPnlBorrowData);
 
         sPnlBookBackground.setViewportView(tPnlBooks);
 
@@ -535,7 +587,7 @@ public class Menu2Form extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sPnlBookBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -678,11 +730,13 @@ public class Menu2Form extends javax.swing.JPanel {
     private java.awt.Panel pnlCategorybackground;
     private javax.swing.JScrollPane sPnlBookBackground;
     private javax.swing.JScrollPane spnlBookBackground;
+    private javax.swing.JScrollPane spnlBorrowBackground;
     private java.awt.Panel tPnlBadd;
-    private java.awt.Panel tPnlBdelete;
     private View.Components.TabbedPaneCustom.TabbedPaneCustom tPnlBooks;
+    private java.awt.Panel tPnlBorrowData;
     private java.awt.Panel tPnlBupdate;
     private javax.swing.JTable tblBookTable;
+    private javax.swing.JTable tblBorrowData;
     private javax.swing.JTextField txtAuthorEmail;
     private javax.swing.JTextField txtAuthorName;
     private javax.swing.JTextField txtDescription;

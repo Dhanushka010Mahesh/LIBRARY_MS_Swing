@@ -16,7 +16,9 @@ public class DB_Config {
     public void ConnOpen() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+            
             conn = DriverManager.getConnection(url, user, pass);
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DB_Config.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -29,10 +31,11 @@ public class DB_Config {
     }
     
     public Set<BorrowBook> getBorrowSet(){
-        String bookQty = "select a.BO_ID,a.BO_Title,a.BO_Author_name,a.BO_Catogory_name,d.USR_Name,b.USRM_Id,b.USRM_Membership_Card,c.BRR_Date,c.BRR_return_date,c.is_returned from book a,members b,book_borrow c,users d where a.BO_ID=c.BO_ID and b.USRM_Id=c.USRM_Id and b.USRM_Id=d.USR_Id;";
         Set<BorrowBook> borrowSet = new HashSet<>();
         ConnOpen();
         try {
+            String bookQty = "select a.BO_ID,a.BO_Title,a.BO_Author_name,a.BO_Catogory_name,d.USR_Name,b.USRM_Id,b.USRM_Membership_Card,c.BRR_Date,c.BRR_return_date,c.is_returned from book a,members b,book_borrow c,users d where a.BO_ID=c.BO_ID and b.USRM_Id=c.USRM_Id and b.USRM_Id=d.USR_Id;";
+        
             Statement sta = conn.createStatement();
             ResultSet resultSet = sta.executeQuery(bookQty);
             
@@ -54,7 +57,7 @@ public class DB_Config {
                 borrowSet.add(br);
             }
         } catch (Exception e) {
-            System.out.println("open conn err : " + e);
+            System.out.println("open conn err : " );
         } finally {
             try {
                 conn.close();

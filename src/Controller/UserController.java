@@ -187,13 +187,15 @@ public class UserController {
         } catch (Exception e) {
 
         } finally {
-            //closeConnection();
             try {
-                connection.getConnection().close();
+                // Ensure the connection is closed after the operation
+                if (connection.getConnection() != null && !connection.getConnection().isClosed()) {
+                    connection.getConnection().close();
+                    System.out.println("Connection closed.");
+                }
             } catch (Exception e) {
-
+                System.out.println("Error closing connection: " + e);
             }
-
         }
 
         return false;

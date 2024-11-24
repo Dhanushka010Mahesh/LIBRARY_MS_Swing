@@ -1,0 +1,2 @@
+Model.User
+Model.UserType
